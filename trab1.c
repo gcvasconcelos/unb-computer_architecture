@@ -24,7 +24,8 @@ void sw(uint32_t address, int16_t kte, int32_t dado);
 void sh(uint32_t address, int16_t kte, int16_t dado);
 // escreve um byte na memória 
 void sb(uint32_t address, int16_t kte, int8_t dado);
-
+// testa as funções
+void test_suite();
 
 int main(int argc, char *argv[]) {  
   sb(0, 0, 0x04); sb(0, 1, 0x03); sb(0, 2, 0x02); sb(0, 3, 0x01);
@@ -36,21 +37,44 @@ int main(int argc, char *argv[]) {
   sw(24, 0, 0x80000000);
   dump_mem(0,28);
 
+  sw(28, 1, 0x1A);
+  sw(28, 2, 0x1B);
+  sw(28, 3, 0x1C);
+  sh(28, 1, 0x1D); 
+  sh(28, 3, 0x1E);
+  dump_mem(28,32);
+
+  sh(32, 0, 0xAAAA); sb(32, 2, 0xBB); sb(32, 3, 0xCC);
+  sb(36, 0, 0xFF); sb(36, 1, 0xEE); sh(36, 2, 0xDDDD);
+  dump_mem(32,40);
+
+  sw(39, 1, 0xFFFFFFFF); 
+  sh(42, 2, 0xAAAA); sh(40, 6, 0xBBBB); 
+  sb(43, 5, 0xAA); sb(45, 4, 0xBB); sb(41, 9, 0xCC); sb(47, 4, 0xDD);
+  dump_mem(40,52);
+  assert(lw(40, 0) == 0xFFFFFFFF);
+
+  test_suite();
+
+  return 0;
+}
+
+void test_suite() {
   assert(lb(0, 0) == 0x04);
   assert(lb(0, 1) == 0x03);
   assert(lb(0, 2) == 0x02);
   assert(lb(0, 3) == 0x01);
-  
+
   assert(lb(4, 0) == 0xFF);
   assert(lb(4, 1) == 0xFE);
   assert(lb(4, 2) == 0xFD);
   assert(lb(4, 3) == 0xFFFFFFFC);
-  
+
   assert(lbu(0, 0) == 0x04);
   assert(lbu(0, 1) == 0x03);
   assert(lbu(0, 2) == 0x02);
   assert(lbu(0, 3) == 0x01);
-  
+
   assert(lbu(4, 0) == 0xFF);
   assert(lbu(4, 1) == 0xFE);
   assert(lbu(4, 2) == 0xFD);
@@ -67,7 +91,10 @@ int main(int argc, char *argv[]) {
   assert(lw(20, 0) == 0xFFFFFFFF);
   assert(lw(24, 0) == 0x80000000);
 
-  return 0;
+  assert(lw(28,0) == 0x0);
+  assert(lw(32, 0) == 0xCCBBAAAA);
+  assert(lw(36, 0) == 0xDDDDEEFF);
+
 }
 
 void dump_mem(uint32_t addr, uint32_t size) {
@@ -79,8 +106,8 @@ void dump_mem(uint32_t addr, uint32_t size) {
 } 
 
 void sw(uint32_t address, int16_t kte, int32_t dado) {
-  if (address%4 != 0 || kte%4 != 0) {
-    printf("Invalid argument (address or kte not divisible by 4)");
+  if ((address+kte)%4 != 0) {
+    printf("Invalid argument (address or kte not divisible by 4)\n");
     return;
   }  
   uint32_t pos = (address + (uint32_t)kte) / 4;
@@ -88,8 +115,8 @@ void sw(uint32_t address, int16_t kte, int32_t dado) {
 }
 
 void sh(uint32_t address, int16_t kte, int16_t dado) {
-  if (address%2 != 0 || kte%2 != 0) {
-    printf("Invalid argument (address or kte not divisible by 2)");
+  if ((address+kte)%2 != 0) {
+    printf("Invalid argument (address or kte not divisible by 2)\n");
     return;
   }  
   uint32_t pos = (address + (uint32_t)kte) / 4;
@@ -109,8 +136,8 @@ void sb(uint32_t address, int16_t kte, int8_t dado) {
 }
 
 int32_t lw(uint32_t address, int16_t kte) {
-  if (address%4 != 0 || kte%4 != 0) {
-    printf("Invalid argument (address or kte not divisible by 4)");
+  if ((address+kte)%4 != 0) {
+    printf("Invalid argument (address or kte not divisible by 4)\n");
     return -1;
   }  
   uint32_t pos = (address + (uint32_t)kte) / 4;
@@ -119,8 +146,8 @@ int32_t lw(uint32_t address, int16_t kte) {
 }
 
 int32_t lh(uint32_t address, int16_t kte) {
-  if (address%2 != 0 || kte%2 != 0) {
-    printf("Invalid argument (address or kte not divisible by 2)");
+  if ((address+kte)%2 != 0) {
+    printf("Invalid argument (address or kte not divisible by 2)\n");
     return -1;
   }
   uint32_t pos = (address + (uint32_t)kte) / 4;
@@ -132,8 +159,8 @@ int32_t lh(uint32_t address, int16_t kte) {
 }
 
 uint32_t lhu(uint32_t address, int16_t kte) {
-  if (address%2 != 0 || kte%2 != 0) {
-    printf("Invalid argument (address or kte not divisible by 2)");
+  if ((address+kte)%2 != 0) {
+    printf("Invalid argument (address or kte not divisible by 2)\n");
     return -1;
   }
   uint32_t pos = (address + (uint32_t)kte) / 4;
