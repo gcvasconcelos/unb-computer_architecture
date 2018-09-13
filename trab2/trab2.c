@@ -3,17 +3,17 @@
 #include <inttypes.h>
 #include "memaccess.h"
 
-// input dos binarios
+// address of bin text and data
 #define DATA_BEGIN  0x2000
 #define DATA_END    0x204c
 #define CODE_BEGIN  0x0000
 #define CODE_END    0x0044
 
-// memoria
+// sim memory
 #define MEM_SIZE    4096
 int32_t mem[MEM_SIZE];
 
-// campos de instrucao
+// instruction fields
 int8_t opcode, rs, rt, rd, shamt, funct;
 int16_t k16;
 uint32_t k26;
@@ -34,7 +34,7 @@ enum FUNCTS	{	 // 6 bits
 	MFLO=0x12, ADDU=0x21,	 SLTU=0x2b
 };
 
-// registradores
+// registers
 uint32_t pc = CODE_BEGIN, ri, HI, LO;
 
 int32_t regs[32];
@@ -49,13 +49,14 @@ enum REGS {
   gp,sp,fp,ra
 };
 
-// chamadas das funções
+// cicle functions
 void fetch();
 void decode();
 void execute();
 void step();
 void run();
 
+// aux functions
 int read_binaries();
 void initialize();
 void op_select(int8_t opcode);
@@ -109,7 +110,7 @@ void decode() {
   // formato tipo-I
   k16     = ri & 0xFFFF;        // 16 bits, 1111 1111 1111 1111
   // formato tipo-J
-  k26     = ri & 0x3FFFFFF;     // 16 bits, 0011 1111 1111 1111 1111 1111 1111  
+  k26     = ri & 0x3FFFFFF;     // 26 bits, 0011 1111 1111 1111 1111 1111 1111  
 }
 
 void execute() {
@@ -124,7 +125,6 @@ void step() {
 
 void run() {
   do {
-    // printf("%x\n", pc);
     step();
   } while (pc > 0 && pc < (CODE_END-CODE_BEGIN));
 }
@@ -227,7 +227,10 @@ void funct_select(int8_t funct) {
       regs[rd] = regs[rs] - regs[rt];
       break;
     case MULT:
-      HI, LO = regs[rs] * regs[rt];  // check if it works
+      // HI, LO = regs[rs] * regs[rt];  // check if it works
+      int64_t product = (int64_t)regs[rs] * (int64_t)regs[rt];
+      HI = (uint32_t)(product >> 32);
+      LO = (uint32_t) product;
       break;
     case DIV:
       HI = regs[rs] % regs[rt];
