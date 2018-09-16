@@ -54,7 +54,7 @@ int32_t lh(uint32_t address, int16_t kte) {
   int32_t mask = 0x0000FFFF;
   int32_t data = mem[pos] & (mask << 8*kte);
   data = data >> 8*kte;
-  printf("half\thex-> %04x\tdec-> %d\n",data,data);
+  // printf("half\thex-> %04x\tdec-> %d\n",data,data);
   return data;
 }
 
@@ -68,7 +68,7 @@ uint32_t lhu(uint32_t address, int16_t kte) {
   uint32_t data = mem[pos] & (mask << 8*kte);
   data = data >> 8*kte;
   data &= mask;
-  printf("uhalf\t\t\tdec-> %d\n",data);
+  // printf("uhalf\t\t\tdec-> %d\n",data);
   return data;
 }
 
@@ -77,7 +77,7 @@ int32_t lb(uint32_t address, int16_t kte) {
   int32_t mask = 0x000000FF;
   int32_t data = mem[pos] & (mask << 8*kte);
   data = data >> 8*kte;
-  printf("byte\thex-> %02x\tdec-> %d\n",data,data);
+  // printf("byte\thex-> %02x\tdec-> %d\n",data,data);
   
   return data;
 }
@@ -88,7 +88,7 @@ uint32_t lbu(uint32_t address, int16_t kte) {
   uint32_t data = mem[pos] & (mask << 8*kte);
   data = data >> 8*kte;
   data &= mask;
-  printf("ubyte\t\t\tdec-> %d\n",data);
+  // printf("ubyte\t\t\tdec-> %d\n",data);
   
   return data;
 }

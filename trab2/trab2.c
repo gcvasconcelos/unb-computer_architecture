@@ -69,7 +69,7 @@ void dump(int op ,char format_mem, char format_regs);
 int main() {
   initialize();
   run();
-
+  dump(2, 'h', 'd');
   return 0;
 }
 
@@ -216,6 +216,7 @@ void op_select(int8_t opcode) {
 }
 
 void funct_select(int8_t funct) {
+  int64_t product;
   switch(funct){
     case ADD:
       regs[rd] = regs[rs] + regs[rt];
@@ -227,8 +228,7 @@ void funct_select(int8_t funct) {
       regs[rd] = regs[rs] - regs[rt];
       break;
     case MULT:
-      // HI, LO = regs[rs] * regs[rt];  // check if it works
-      int64_t product = (int64_t)regs[rs] * (int64_t)regs[rt];
+      product = (int64_t)regs[rs] * (int64_t)regs[rt];
       HI = (uint32_t)(product >> 32);
       LO = (uint32_t) product;
       break;
@@ -341,22 +341,24 @@ void dump_reg(char format) {
 
 void dump(int op ,char format_mem, char format_regs) {
   switch(op){
-    case 0:
-      printf("MEMORY_TEXT\n");
-      dump_mem(CODE_BEGIN, CODE_END, format_mem);  // print code
-      printf("MEMORY_DATA\n");
-      dump_mem(DATA_BEGIN, DATA_END, format_mem);  // print data
+    case 0:                                         // print only memory
+      printf("\nMEMORY_TEXT\n");
+      dump_mem(CODE_BEGIN, CODE_END, format_mem);  
+      printf("\nMEMORY_DATA\n");
+      dump_mem(DATA_BEGIN, DATA_END, format_mem);   
       break;
-    case 1:
-      printf("REGISTERS\n");
-      dump_reg(format_regs);                        // print registers
-    case 2:
-      printf("MEMORY_TEXT\n");
-      dump_mem(CODE_BEGIN, CODE_END, format_mem);  // print code
-      printf("MEMORY_DATA\n");
-      dump_mem(DATA_BEGIN, DATA_END, format_mem);  // print data
-      printf("REGISTERS\n");
-      dump_reg(format_regs);                        // print registers
+    case 1:                                         // print only registers
+      printf("\nREGISTERS\n");            
+      dump_reg(format_regs);
+      break;                 
+    case 2:                                         // print both memory and registers
+      printf("\nMEMORY_TEXT\n");
+      dump_mem(CODE_BEGIN, CODE_END, format_mem);   
+      printf("\nMEMORY_DATA\n");
+      dump_mem(DATA_BEGIN, DATA_END, format_mem);   
+      printf("\nREGISTERS\n");
+      dump_reg(format_regs);  
+      break;                      
     default:
       printf("Error! Dump option not found.\n");
       break;
