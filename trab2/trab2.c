@@ -5,9 +5,9 @@
 
 // address of bin text and data
 #define DATA_BEGIN  0x2000
-#define DATA_END    0x204c
+#define DATA_END    0x2040
 #define CODE_BEGIN  0x0000
-#define CODE_END    0x0044
+#define CODE_END    0x001c
 
 // sim memory
 #define MEM_SIZE    4096
@@ -76,7 +76,7 @@ int main() {
 int read_binaries() {
   FILE *data_file, *code_file;
   
-  if ((data_file = fopen("data.bin","rb")) == NULL || (code_file = fopen("text.bin","rb")) == NULL){
+  if ((data_file = fopen("./test/data.bin","rb")) == NULL || (code_file = fopen("./test/text.bin","rb")) == NULL){
     printf("Error! opening file");
     return -1;
   }
@@ -303,7 +303,7 @@ void dump_mem(int start, int end, char format) {
   start /= 4;
   end /= 4;
   printf("\n");
-  for(int i = start; i < end; i++) {
+  for(int i = start; i <= end; i++) {
     if (format == 'h')
       printf("mem[%d] = %08x\n", i*4, mem[i]);  
     else if (format == 'd')
