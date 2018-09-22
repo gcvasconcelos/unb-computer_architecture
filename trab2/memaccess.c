@@ -20,8 +20,9 @@ void sh(uint32_t address, int16_t kte, int16_t dado) {
     return;
   }  
   uint32_t pos = (address + (uint32_t)kte) / 4;
-  uint32_t data = (uint32_t)dado << 8*(uint32_t)kte;
+  uint32_t data = (uint16_t)dado << 8*(uint32_t)kte;
   uint32_t mask = 0x0000FFFF; 
+  mem[pos] &= ~(0xFFFF << 8*(uint32_t)kte);
   data &= mask << 8*(uint32_t)kte;
   mem[pos] |= data;
 
@@ -29,9 +30,9 @@ void sh(uint32_t address, int16_t kte, int16_t dado) {
 
 void sb(uint32_t address, int16_t kte, int8_t dado) {
   uint32_t pos = (address + (uint32_t)kte) / 4;
-  uint32_t data = (uint32_t)dado << 8*(uint32_t)kte;
+  uint32_t data = (uint8_t)dado << 8*(uint32_t)kte;
   uint32_t mask = 0x000000FF;
-  data &= mask << 8*(uint32_t)kte;
+  mem[pos] &= ~(0xFF << 8*(uint32_t)kte);
   mem[pos] |= data;
 }
 
@@ -54,6 +55,9 @@ int32_t lh(uint32_t address, int16_t kte) {
   int32_t mask = 0x0000FFFF;
   int32_t data = mem[pos] & (mask << 8*kte);
   data = data >> 8*kte;
+  if (data >> 15) {
+    data |= 0xFFFF0000;
+  }
   // printf("half\thex-> %04x\tdec-> %d\n",data,data);
   return data;
 }
@@ -77,8 +81,11 @@ int32_t lb(uint32_t address, int16_t kte) {
   int32_t mask = 0x000000FF;
   int32_t data = mem[pos] & (mask << 8*kte);
   data = data >> 8*kte;
-  // printf("byte\thex-> %02x\tdec-> %d\n",data,data);
-  
+  if (data >> 7) {
+    data |= 0xFFFFFF00;
+  }
+  // printf("byte\thex-> %x\tdec-> %d\n",data,data);
+
   return data;
 }
 
@@ -87,7 +94,6 @@ uint32_t lbu(uint32_t address, int16_t kte) {
   uint32_t mask = 0x000000FF;
   uint32_t data = mem[pos] & (mask << 8*kte);
   data = data >> 8*kte;
-  data &= mask;
   // printf("ubyte\t\t\tdec-> %d\n",data);
   
   return data;

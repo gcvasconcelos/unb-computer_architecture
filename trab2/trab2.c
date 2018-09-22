@@ -5,9 +5,9 @@
 
 // address of bin text and data
 #define DATA_BEGIN  0x2000
-#define DATA_END    0x2040
+#define DATA_END    0x2014
 #define CODE_BEGIN  0x0000
-#define CODE_END    0x001c
+#define CODE_END    0x04e8
 
 // sim memory
 #define MEM_SIZE    4096
@@ -69,7 +69,7 @@ void dump(int op ,char format_mem, char format_regs);
 int main() {
   initialize();
   run();
-  dump(2, 'h', 'd');
+  // dump(2, 'h', 'd');
   return 0;
 }
 
@@ -124,8 +124,13 @@ void step() {
 }
 
 void run() {
+  int i = 0;
   do {
     step();
+    // printf("mem -> %08x\n", mem[i]); 
+    // i++;
+    // dump_reg('d');
+    // getchar();
   } while (pc > 0 && pc < (CODE_END-CODE_BEGIN));
 }
 
@@ -140,7 +145,7 @@ void op_select(int8_t opcode) {
       regs[rt] = lw(regs[rs], k16);
       break;
     case LB:
-      regs[rt] = lb(regs[rs], k16);
+      regs[rt] = lb(regs[rs], (k16 & 0xffff));
       break;
     case LBU:
       regs[rt] = lbu(regs[rs], k16);
@@ -152,36 +157,36 @@ void op_select(int8_t opcode) {
       regs[rt] = lhu(regs[rs], k16);
       break;
     case LUI:
-      regs[rt] = (int32_t)k16 << 16;
+      regs[rt] = k16 << 16;
       break;
     case SW:
       sw(regs[rs], k16, regs[rt]);
       break;
     case SB:
-      sw(regs[rs], k16, regs[rt]);
+      sb(regs[rs], k16, regs[rt]);
       break;
     case SH:
-      sw(regs[rs], k16, regs[rt]);
+      sh(regs[rs], k16, regs[rt]);
       break;
     // branches
     case BEQ:
-      if (regs[rs] == regs[rt]) pc += (int32_t)k16 << 2;
+      if (regs[rs] == regs[rt]) pc += k16 << 2;
       break;
     case BNE:
-      if (regs[rs] != regs[rt]) pc += (int32_t)k16 << 2;
+      if (regs[rs] != regs[rt]) pc += k16 << 2;
       break;
     case BLEZ:
-      if (regs[rs] <= 0) pc += (int32_t)k16 << 2;
+      if (regs[rs] <= 0) pc += k16 << 2;
       break;
     case BGTZ:
-      if (regs[rs] > 0) pc += (int32_t)k16 << 2;
+      if (regs[rs] > 0) pc += k16 << 2;
       break;
     // imediatas
     case ADDI:
-      regs[rt] = regs[rs] + (int32_t)k16;
+      regs[rt] = regs[rs] + k16;
       break;
     case ADDIU:
-      regs[rt] = (uint32_t)regs[rs] + (uint16_t)k16;
+      regs[rt] = (uint32_t)regs[rs] + k16;
       break;
     case SLTI:
       regs[rt] = regs[rs] < k16 ? 1 : 0;
@@ -190,13 +195,13 @@ void op_select(int8_t opcode) {
       regs[rt] = (uint32_t)regs[rs] < (uint16_t)k16 ? 1 : 0;
       break;
     case ANDI:
-      regs[rt] = regs[rs] & (int32_t)k16;
+      regs[rt] = regs[rs] & (k16 & 0xffff);
       break;
     case ORI:
-      regs[rt] = regs[rs] | (int32_t)k16;
+      regs[rt] = regs[rs] | (k16 & 0xffff);
       break;
     case XORI:
-      regs[rt] = regs[rs] ^ (int32_t)k16;
+      regs[rt] = regs[rs] ^ (k16 & 0xffff);
       break;
     // jumps
     case J:
@@ -216,7 +221,7 @@ void op_select(int8_t opcode) {
 }
 
 void funct_select(int8_t funct) {
-  int64_t product;
+  uint64_t product;
   switch(funct){
     case ADD:
       regs[rd] = regs[rs] + regs[rt];
@@ -228,7 +233,7 @@ void funct_select(int8_t funct) {
       regs[rd] = regs[rs] - regs[rt];
       break;
     case MULT:
-      product = (int64_t)regs[rs] * (int64_t)regs[rt];
+      product = (int64_t)(int32_t)regs[rs] * (int64_t)(int32_t)regs[rt];
       HI = (uint32_t)(product >> 32);
       LO = (uint32_t) product;
       break;
