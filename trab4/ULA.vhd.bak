@@ -1,0 +1,29 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_signed.all;
+use ieee.numeric_std.all;
+
+entity ULA is
+	generic (WSIZE : natural := 32);
+	port (
+		opcode : in std_logic(4 downto 0);
+		A, B : in std_logic_vector(WSIZE-1 downto 0);
+		Z : out std_logic_vector(WSIZE-1 downto 0);
+		zero, ovfl : out std_logic
+	);
+end ULA;
+
+architecture ULA_arch of ULA is
+	signal tmp : std_logic_vector(31 downto 0);
+	
+	begin
+		Z <= tmp;
+		
+		process (A, B, opcode)
+		begin
+			case opcode is
+				when “0000” => tmp <= A and B;
+				when others => tmp <= (others => '0');
+			end case;
+		end process
+end architecture ULA_arch;

@@ -1,0 +1,83 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Gabriel Vasconcelos\Documents\OAC\simulation\modelsim
+Eula
+Z1 w1541964197
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z4 DPx4 ieee 16 std_logic_signed 0 22 E>OLoMaBGQ?hbGgOoNXM^1
+Z5 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z6 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z7 dC:\Users\Gabriel Vasconcelos\Documents\OAC\simulation\modelsim
+Z8 8C:/Users/Gabriel Vasconcelos/Documents/OAC/ULA.vhd
+Z9 FC:/Users/Gabriel Vasconcelos/Documents/OAC/ULA.vhd
+l0
+L6
+VH3]ff3U2CfgdR[OZb=jPD2
+Z10 OV;C;10.1d;51
+31
+Z11 !s108 1541965204.738000
+Z12 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/ULA.vhd|
+Z13 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/ULA.vhd|
+Z14 o-93 -work work -O0
+Z15 tExplicit 1
+!s100 <2dBG3YR[K2CMHG9El5991
+!i10b 1
+Aula_arch
+R2
+R3
+R4
+R5
+R6
+DEx4 work 3 ula 0 22 H3]ff3U2CfgdR[OZb=jPD2
+l18
+L16
+V[d[R7D_^KQ@cm]=JbVRS63
+R10
+31
+R11
+R12
+R13
+R14
+R15
+!s100 QF[E;WcJDeKiB6Pfkd:km1
+!i10b 1
+Eula_tb
+Z16 w1541965189
+R2
+R5
+R6
+R7
+Z17 8C:/Users/Gabriel Vasconcelos/Documents/OAC/simulation/modelsim/ULA.vht
+Z18 FC:/Users/Gabriel Vasconcelos/Documents/OAC/simulation/modelsim/ULA.vht
+l0
+L31
+Vc60DhIKi72MmH7ZDKUbe13
+!s100 MS=;4MTKH7Yn>T3;nW_?J0
+R10
+31
+!i10b 1
+Z19 !s108 1541965205.457000
+Z20 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/simulation/modelsim/ULA.vht|
+Z21 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/simulation/modelsim/ULA.vht|
+R14
+R15
+Aula_tb_arch
+R2
+R5
+R6
+DEx4 work 6 ula_tb 0 22 c60DhIKi72MmH7ZDKUbe13
+l54
+L34
+VgoL[PG9>_clnEjdOMBd9g1
+!s100 :P:5<hJ0<C2O@_PC]Bb723
+R10
+31
+!i10b 1
+R19
+R20
+R21
+R14
+R15
