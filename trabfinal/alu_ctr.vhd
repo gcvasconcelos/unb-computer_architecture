@@ -10,6 +10,7 @@ entity alu_ctr is
 	(
 		op_alu		: in std_logic_vector(2 downto 0);
 		funct			: in std_logic_vector(5 downto 0);
+		mux_a_ctr	: out std_logic;
 		alu_ctr	   : out std_logic_vector(3 downto 0)
 	);
 end entity;
@@ -33,4 +34,7 @@ alu_ctr <= 	ULA_AND when (op_alu="010" and funct=iAND) else
 				ULA_SLT when (op_alu="010" and funct=iSLT) else
 				ULA_NOR when (op_alu="010" and funct=iNOR) else
 				ULA_NOP;
+				
+mux_a_ctr <= '1' when (funct=iSLL or funct=iSRL) else	'0';
+
 end architecture;

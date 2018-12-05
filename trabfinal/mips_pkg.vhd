@@ -184,6 +184,7 @@ package mips_pkg is
 	port (
 		op_alu		: in std_logic_vector(2 downto 0);
 		funct			: in std_logic_vector(5 downto 0);
+		mux_a_ctr	: out std_logic;
 		alu_ctr	   : out std_logic_vector(3 downto 0)
 	);
 	end component;
@@ -238,10 +239,14 @@ component extsgn is
 		);
 end component;
 
-component sig_ext is
+component extbits is 
+	generic (
+		IN_SIZE : natural := 5;
+		OUT_SIZE : natural := 32	
+		);
 	port (
-		imm16	: in std_logic_vector(WORD_SIZE/2 - 1 downto 0);
-		ext32 : out std_logic_vector(WORD_SIZE-1 downto 0)
+		input : in std_logic_vector(IN_SIZE-1 downto 0);
+		output: out std_logic_vector(OUT_SIZE-1 downto 0)
 		);
 end component;
 

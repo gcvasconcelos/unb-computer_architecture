@@ -17,7 +17,7 @@ ENTITY mips_control IS
 		op_alu	: OUT std_logic_vector (2 DOWNTO 0);
 		s_mem_add: OUT std_logic;
 		s_PCin	: OUT std_logic_vector (1 DOWNTO 0);
-		s_aluAin : OUT std_logic_vector (1 DOWNTO 0); 
+		s_aluAin : OUT std_logic;
 		s_aluBin : OUT std_logic_vector (1 DOWNTO 0); 
 		wr_breg	: OUT std_logic;
 		logic_ext: OUT std_logic; 
@@ -67,7 +67,7 @@ logic: process (opcode, pstate)
 		s_datareg 	<= '0';
 		s_mem_add 	<= '0';
 		s_PCin		<= "00";
-		s_aluAin 	<= "00";
+		s_aluAin 	<= '0';
 		s_aluBin  	<= "00";
 		s_reg_add 	<= '0';
 		logic_ext 	<= '0';
@@ -78,7 +78,7 @@ logic: process (opcode, pstate)
 								
 			when decode_st 	=>	s_aluBin <= "11";
 								
-			when c_mem_add_st => s_aluAin <= "01";
+			when c_mem_add_st => s_aluAin <= '1';
 										s_aluBin <= "10";
 										
 			when readmem_st 	=> s_mem_add <= '1';
@@ -90,12 +90,12 @@ logic: process (opcode, pstate)
 										s_mem_add <= '1';
 									
 			when rtype_ex_st	=> op_alu <= "010";
-										s_aluAin <= "01";
+										s_aluAin <= '1';
 									
 			when writereg_st 	=> s_reg_add <= '1';
 										wr_breg <= '1';
 								  
-			when branch_ex_st => s_aluAin <= "01";
+			when branch_ex_st => s_aluAin <= '1';
 										op_alu <= "001";
 										s_PCin <= "01";
 										if opcode = iBEQ 
@@ -107,12 +107,12 @@ logic: process (opcode, pstate)
 										wr_pc   <= '1';
 			when arith_imm_st => wr_breg <= '1';
 			
-			when andi_ex_st	=> s_aluAin <= "01";
+			when andi_ex_st	=> s_aluAin <= '1';
 										s_aluBin <= "10";
 										logic_ext <= '1';
 										op_alu <= "011";
 										
-			when ori_ex_st		=> s_aluAin <= "01";
+			when ori_ex_st		=> s_aluAin <= '1';
 										s_aluBin <= "10";
 										logic_ext <= '1';
 										op_alu <= "100";

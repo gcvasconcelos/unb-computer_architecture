@@ -81,4 +81,5 @@ set_global_assignment -name EDA_TEST_BENCH_FILE mips_multi_tb.vhd -section_id mi
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name MIF_FILE mips_rom.mif
+set_global_assignment -name VHDL_FILE extbits.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

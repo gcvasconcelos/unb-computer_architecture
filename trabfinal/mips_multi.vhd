@@ -57,7 +57,9 @@ signal alu_sel_v			: std_logic_vector(3 downto 0);  -- indice registador escrito
 signal sel_aluB_v 		: std_logic_vector(1 downto 0);	-- seleciona entrada B da ula
 signal alu_op_v			: std_logic_vector(2 downto 0);	-- codigo op ula
 signal org_pc_v			: std_logic_vector(1 downto 0);	-- selecao entrada do PC
-signal sel_aluA_s			: std_logic_vector(1 downto 0);	-- seleciona entrada A da ula
+
+signal shamt_ext_v		: std_logic_vector(WORD_SIZE-1 downto 0);
+signal reg_shamt_sel_v 	: std_logic_vector(WORD_SIZE-1 downto 0);
 
 signal 	
 			branch_s,		-- beq ou bne
@@ -69,11 +71,13 @@ signal
 			mem_reg_s,		-- controle dado breg
 			mem_wr_s,		-- escrita na memoria
 			--ovfl_s,			-- overflow da ULA
+			sel_aluA_s, 	-- seleciona entrada A da ula
 			pc_wr_s,			-- escreve pc
 			reg_dst_s,		-- controle endereco reg
 			reg_wr_s,		-- escreve breg
 			sel_end_mem_s,	-- seleciona endereco memoria
 			zero_s,			-- sinal zero da ula
+			shamt_sel_s,		-- controle do mux do primeiro mux da ula A
 			logic_ext_s		-- extensão lógica com 0s ------<
 			: std_logic;
 			
@@ -86,7 +90,6 @@ alias    imm16_field_v	: std_logic_vector(15 downto 0) is instruction_v(15 downt
 alias 	imm26_field_v  : std_logic_vector(25 downto 0) is instruction_v(25 downto 0);
 alias 	sht_field_v		: std_logic_vector(4 downto 0)  is instruction_v(10 downto 6);
 alias    op_field_v		: std_logic_vector(5 downto 0)  is instruction_v(31 downto 26);
-
 	
 begin
 
@@ -200,13 +203,31 @@ sgnx:	extsgn
 		);
 
 --=======================================================================
+-- Modulo de extensao de bits: 5 para 32 bits
+--=======================================================================
+bitx: extbits
+		port map(
+			input => sht_field_v, output => shamt_ext_v
+		);
+		
+--=======================================================================
+-- Mux para selecao da entrada do mux de cima da ULA
+--=======================================================================		
+mux_A: mux_2
+		port map (
+			in0 	=> regA_v, 
+			in1 	=> shamt_ext_v,
+			sel 	=> shamt_sel_s,
+			m_out => reg_shamt_sel_v
+		);
+
+--=======================================================================
 -- Mux para selecao da entrada de cima da ula
 --=======================================================================		
-mux_ulaA: mux_3
+mux_ulaA: mux_2
 		port map (
 			in0 	=> pcout_v, 
-			in1 	=> regA_v,
-			in2	=> sht_field_v,
+			in1 	=> reg_shamt_sel_v,
 			sel 	=> sel_aluA_s,
 			m_out => aluA_v
 		);
@@ -231,6 +252,7 @@ actr: alu_ctr
 			port map (
 				op_alu 	=> alu_op_v,
 				funct	 	=> func_field_v,
+				mux_a_ctr => shamt_sel_s,
 				alu_ctr	=> alu_sel_v
 			);
 
