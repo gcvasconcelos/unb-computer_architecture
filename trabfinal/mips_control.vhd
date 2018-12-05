@@ -21,7 +21,9 @@ ENTITY mips_control IS
 		s_aluBin : OUT std_logic_vector (1 DOWNTO 0); 
 		wr_breg	: OUT std_logic;
 		logic_ext: OUT std_logic; 
-		s_reg_add: OUT std_logic
+		s_reg_add: OUT std_logic;
+		is_unsigned_s: OUT std_logic;
+		mdr_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0)
 	);
 	
 END ENTITY;
@@ -40,7 +42,9 @@ ARCHITECTURE control_op OF mips_control IS
 								jump_ex_st,
 								andi_ex_st,
 								ori_ex_st,
-								arith_imm_st);  -- escreve resultado op arit. imediato
+								arith_imm_st,
+								ldreghalf_st,
+								ldregbyte_st);  -- escreve resultado op arit. imediato
 
 	signal pstate, nstate : ctr_state;
 
@@ -71,6 +75,8 @@ logic: process (opcode, pstate)
 		s_aluBin  	<= "00";
 		s_reg_add 	<= '0';
 		logic_ext 	<= '0';
+		mdr_mux_sel_v <= "00";
+		is_unsigned_s <= '0';
 		case pstate is 
 			when fetch_st 		=> wr_pc 	<= '1';
 										s_aluBin <= "01";
@@ -81,10 +87,22 @@ logic: process (opcode, pstate)
 			when c_mem_add_st => s_aluAin <= '1';
 										s_aluBin <= "10";
 										
-			when readmem_st 	=> s_mem_add <= '1';
-								 
-			when ldreg_st 		=>	s_datareg <= '1';
-										wr_breg	  <= '1';
+			when readmem_st 	=> s_mem_add <= '1'; -- IouD
+			
+			when ldreghalf_st => s_mem_add <= '1';
+										mdr_mux_sel_v <= "01";
+										if opcode = iLHU 
+										then is_unsigned_s <= '1';
+										end if;
+										
+			when ldregbyte_st => s_mem_add <= '1';
+										mdr_mux_sel_v <= "10";
+										if opcode = iLBU 
+										then is_unsigned_s <= '1';
+										end if;
+				
+			when ldreg_st 		=>	s_datareg <= '1'; -- MEMTOREG
+										wr_breg	  <= '1'; -- REGWRITE
 								
 			when writemem_st 	=> wr_mem 	 <= '1';
 										s_mem_add <= '1';
@@ -128,7 +146,7 @@ new_state: process (opcode, pstate)
 			when fetch_st => 	nstate <= decode_st;
 			when decode_st =>	case opcode is
 									when iRTYPE => nstate <= rtype_ex_st;
-									when iLW | iSW | iADDI => nstate <= c_mem_add_st;
+									when iLW | iSW | iADDI | iLH | iLHU | iLB | iLBU => nstate <= c_mem_add_st;
 									when iANDI => nstate <= andi_ex_st;
 									when iORI => nstate <= ori_ex_st;
 									when iBEQ | iBNE => nstate <= branch_ex_st;
@@ -139,9 +157,17 @@ new_state: process (opcode, pstate)
 									when iLW => nstate <= readmem_st;
 									when iSW => nstate <= writemem_st;
 									when iADDI => nstate <= arith_imm_st;
+									when iLH | iLHU => nstate <= ldreghalf_st;
+									when iLB | iLBU => nstate <= ldregbyte_st;
 									when others => null;
-								 end case;
-			when readmem_st 	=> nstate <= ldreg_st;
+								   end case;
+			when readmem_st 	=> case opcode is
+									when iLW => nstate <= ldreg_st;
+									
+									when others => null;
+									end case;
+			when ldreghalf_st => nstate <= ldreg_st;
+			when ldregbyte_st => nstate <= ldreg_st;
 			when rtype_ex_st 	=> nstate <= writereg_st;
 			when andi_ex_st 	=> nstate <= arith_imm_st;
 			when ori_ex_st 	=> nstate <= arith_imm_st;

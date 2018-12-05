@@ -6,7 +6,7 @@ Z0 dC:\Users\Gabriel Vasconcelos\Documents\OAC\trabfinal\simulation\modelsim
 Ealu_ctr
 Z1 w1544009808
 Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
-Z3 DPx4 work 8 mips_pkg 0 22 _Gh[CR>I5J13AP@f:kN832
+Z3 DPx4 work 8 mips_pkg 0 22 Z]97RmOK626`PS96goQK[1
 Z4 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
 Z5 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
 Z6 dC:\Users\Gabriel Vasconcelos\Documents\OAC\trabfinal\simulation\modelsim
@@ -17,7 +17,7 @@ L8
 VEo1@`fRLNkfLd4[k6o9>M2
 Z9 OV;C;10.1d;51
 31
-Z10 !s108 1544011194.484000
+Z10 !s108 1544041241.103000
 Z11 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/alu_ctr.vhd|
 Z12 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/alu_ctr.vhd|
 Z13 o-93 -work work -O0
@@ -58,7 +58,7 @@ L10
 V@8`bB?R9g4L5C@Ug6HJ?73
 R9
 31
-Z20 !s108 1544011193.588000
+Z20 !s108 1544041240.737000
 Z21 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/breg.vhd|
 Z22 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/breg.vhd|
 R13
@@ -99,7 +99,7 @@ L5
 VLE<eLllQ0j@8?SEaNk`D>3
 R9
 31
-Z26 !s108 1544011194.968000
+Z26 !s108 1544041241.437000
 Z27 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extbits.vhd|
 Z28 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extbits.vhd|
 R13
@@ -138,7 +138,7 @@ L6
 V3@H]zfHV_X`RU?0BHkEj[1
 R9
 31
-Z32 !s108 1544011192.713000
+Z32 !s108 1544041240.342000
 Z33 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn.vhd|
 Z34 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn.vhd|
 R13
@@ -163,36 +163,36 @@ R13
 R14
 !s100 6PUTY_hYOQEzFLbZ_5Bcn1
 !i10b 1
-Emips_control
-Z35 w1544009358
+Eextsgn8
+Z35 w1544035619
 R2
 R3
 R4
 R5
 R6
-Z36 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd
-Z37 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd
+Z36 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn8.vhd
+Z37 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn8.vhd
 l0
-L5
-V3jZFA1OB4g?C^0>[Bh:S@0
+L6
+VNAYcVKMO4_V9OjJ:de=7I0
 R9
 31
-Z38 !s108 1544011192.269000
-Z39 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd|
-Z40 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd|
+Z38 !s108 1544041242.744000
+Z39 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn8.vhd|
+Z40 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn8.vhd|
 R13
 R14
-!s100 iUYL@ZzmOKCPPJGj>o^Sz1
+!s100 hBF9:B@?V>ih0?KUlU:9_0
 !i10b 1
-Acontrol_op
+Awires
 R2
 R3
 R4
 R5
-DEx4 work 12 mips_control 0 22 3jZFA1OB4g?C^0>[Bh:S@0
-l47
-L29
-V<RKeZT2_zK_`Zf=?3F;O:2
+DEx4 work 7 extsgn8 0 22 NAYcVKMO4_V9OjJ:de=7I0
+l20
+L18
+Vz5BC4Ra`PVe2i]j>1I]3W2
 R9
 31
 R38
@@ -200,32 +200,71 @@ R39
 R40
 R13
 R14
-!s100 :TXHk56X4bVHTkhFdKad=2
+!s100 kT3;Ci?X81E^:kDKLi@:n1
+!i10b 1
+Emips_control
+Z41 w1544036588
+R2
+R3
+R4
+R5
+R6
+Z42 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd
+Z43 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd
+l0
+L5
+V2hM87;653[h?I[9=>Xn7z0
+R9
+31
+Z44 !s108 1544041239.995000
+Z45 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd|
+Z46 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_control.vhd|
+R13
+R14
+!s100 eS9==a`aiOS12OjV[o_282
+!i10b 1
+Acontrol_op
+R2
+R3
+R4
+R5
+DEx4 work 12 mips_control 0 22 2hM87;653[h?I[9=>Xn7z0
+l51
+L31
+V2Cg25XZ:Bm>kLXkP@I5G]2
+R9
+31
+R44
+R45
+R46
+R13
+R14
+!s100 ?<?[f>l;jfkb_A@EdQk<K2
 !i10b 1
 Emips_mem
-Z41 w1543493670
-Z42 DPx9 altera_mf 20 altera_mf_components 0 22 dN>@>Mze:JEj3f_7zNO2S2
+Z47 w1543493670
+Z48 DPx9 altera_mf 20 altera_mf_components 0 22 dN>@>Mze:JEj3f_7zNO2S2
 R3
 R2
 R4
 R5
 R6
-Z43 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd
-Z44 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd
+Z49 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd
+Z50 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd
 l0
 L12
 VO@SdERni9?Y^U]HOf7dC:1
 R9
 31
-Z45 !s108 1544011191.611000
-Z46 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd|
-Z47 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd|
+Z51 !s108 1544041239.545000
+Z52 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd|
+Z53 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_mem.vhd|
 R13
 R14
 !s100 07?NJ;z_:YCIC@5R`i1mQ1
 !i10b 1
 Artl
-R42
+R48
 R3
 R2
 R4
@@ -236,20 +275,20 @@ L24
 VWQE>nnLAJMT>EnaEBn>OK1
 R9
 31
-R45
-R46
-R47
+R51
+R52
+R53
 R13
 R14
 !s100 eUmh48WmQK;12HFl6>`lH0
 !i10b 1
 Emips_multi_tb
-Z48 w1543927784
+Z54 w1544029010
 R4
 R5
 R6
-Z49 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd
-Z50 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd
+Z55 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd
+Z56 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd
 l0
 L30
 Vh<D<TKJ[Y=5kZ32Wk;baL3
@@ -257,9 +296,9 @@ Vh<D<TKJ[Y=5kZ32Wk;baL3
 R9
 31
 !i10b 1
-Z51 !s108 1544011195.425000
-Z52 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd|
-Z53 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd|
+Z57 !s108 1544041243.366000
+Z58 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd|
+Z59 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd|
 R13
 R14
 Amips_multi_arch
@@ -273,30 +312,30 @@ VXQ6IU59TB8h4:6C;kY2SV2
 R9
 31
 !i10b 1
-R51
-R52
-R53
+R57
+R58
+R59
 R13
 R14
 Pmips_pkg
 R2
 R4
 R5
-Z54 w1544010995
+Z60 w1544018485
 R6
-Z55 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd
-Z56 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd
+Z61 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd
+Z62 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd
 l0
 L6
-V_Gh[CR>I5J13AP@f:kN832
+VZ]97RmOK626`PS96goQK[1
 R9
 31
-Z57 !s108 1544011188.739000
-Z58 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd|
-Z59 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd|
+Z63 !s108 1544041237.089000
+Z64 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd|
+Z65 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_pkg.vhd|
 R13
 R14
-!s100 m:F2E0N[3;oYNg>1>gWCP2
+!s100 QCeSinWcVSa]6=nT8GXad2
 !i10b 1
 Bbody
 R3
@@ -304,35 +343,35 @@ R2
 R4
 R5
 l0
-L284
+L325
 VjHjkP2zVYhJ7i:?`Bf?Q80
 R9
 31
-R57
-R58
-R59
+R63
+R64
+R65
 R13
 R14
 nbody
-!s100 52@GL6AYE;Gf10T^R8T831
+!s100 Vbeja8=33QFjTfW5:^e?o2
 !i10b 1
 Emulticiclo
-Z60 w1544010938
+Z66 w1544039594
 R2
 R3
 R4
 R5
 R6
-Z61 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd
-Z62 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd
+Z67 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd
+Z68 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd
 l0
 L8
 VFokeHfd0P]1A4_4jjb:nL3
 R9
 31
-Z63 !s108 1544011191.174000
-Z64 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd|
-Z65 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd|
+Z69 !s108 1544041239.125000
+Z70 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd|
+Z71 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi.vhd|
 R13
 R14
 !s100 Ld`^=bggz7?XQ;M?iZcAm1
@@ -343,37 +382,123 @@ R3
 R4
 R5
 DEx4 work 10 multiciclo 0 22 FokeHfd0P]1A4_4jjb:nL3
-l95
+l114
 L19
-VW1H7foAnd?X`GOkGN6kcT2
+V3]@XXMdbl`UIzMB=1Ce[J0
 R9
 31
-R63
-R64
-R65
+R69
+R70
+R71
 R13
 R14
-!s100 5P5=[<e_6ao=D@5U=]_<02
+!s100 >U1z1z4EBC1K6aY7bhB@^2
 !i10b 1
-Emux_2
-Z66 w1390850327
+Emux16_2
+Z72 w1544016492
 R2
 R3
 R16
-Z67 DPx4 ieee 16 std_logic_signed 0 22 E>OLoMaBGQ?hbGgOoNXM^1
+Z73 DPx4 ieee 16 std_logic_signed 0 22 E>OLoMaBGQ?hbGgOoNXM^1
 R4
 R5
 R6
-Z68 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd
-Z69 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd
+Z74 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux16_2.vhd
+Z75 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux16_2.vhd
+l0
+L6
+V^B?F5GILKLTd`;]M=B=C33
+R9
+31
+Z76 !s108 1544041242.322000
+Z77 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux16_2.vhd|
+Z78 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux16_2.vhd|
+R13
+R14
+!s100 b@1I3PWT;Rl<;=MTo6?;=3
+!i10b 1
+Artl
+R2
+R3
+R16
+R73
+R4
+R5
+DEx4 work 7 mux16_2 0 22 ^B?F5GILKLTd`;]M=B=C33
+l16
+L15
+VdJ1AGjTbTTRf[IIfgdJ?^3
+R9
+31
+R76
+R77
+R78
+R13
+R14
+!s100 16X<8]i;m4Eck[VLl]KaG0
+!i10b 1
+Emux8_4
+Z79 w1544016507
+R2
+R3
+R16
+R73
+R4
+R5
+R6
+Z80 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux8_4.vhd
+Z81 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux8_4.vhd
+l0
+L6
+VRAo]@@WMoNDn5lPlb?;Qm0
+R9
+31
+Z82 !s108 1544041241.941000
+Z83 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux8_4.vhd|
+Z84 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux8_4.vhd|
+R13
+R14
+!s100 5]6[0GC@f=3S;H85TdFNH2
+!i10b 1
+Artl
+R2
+R3
+R16
+R73
+R4
+R5
+DEx4 work 6 mux8_4 0 22 RAo]@@WMoNDn5lPlb?;Qm0
+l17
+L16
+V6^<5=S[b:_?6MV<2BXZ`S3
+R9
+31
+R82
+R83
+R84
+R13
+R14
+!s100 9]Pa`6SHTYzhUd46US]d92
+!i10b 1
+Emux_2
+Z85 w1390850327
+R2
+R3
+R16
+R73
+R4
+R5
+R6
+Z86 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd
+Z87 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd
 l0
 L6
 Vg0Io]c`bdUN4[=;LL9M6=2
 R9
 31
-Z70 !s108 1544011190.827000
-Z71 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd|
-Z72 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd|
+Z88 !s108 1544041238.719000
+Z89 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd|
+Z90 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_2.vhd|
 R13
 R14
 !s100 9ce3kMhhE>?Ya2@7W_38>2
@@ -382,7 +507,7 @@ Artl
 R2
 R3
 R16
-R67
+R73
 R4
 R5
 DEx4 work 5 mux_2 0 22 g0Io]c`bdUN4[=;LL9M6=2
@@ -391,32 +516,32 @@ L15
 VeShBG@FzQc0:GjFD]2Z001
 R9
 31
-R70
-R71
-R72
+R88
+R89
+R90
 R13
 R14
 !s100 E?5jS]Sd5gQzi1UJMfSXE2
 !i10b 1
 Emux_3
-Z73 w1390927592
+Z91 w1390927592
 R2
 R3
 R16
-R67
+R73
 R4
 R5
 R6
-Z74 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd
-Z75 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd
+Z92 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd
+Z93 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd
 l0
 L6
 VNA_IWTgOn=MT0>d7<2TSR0
 R9
 31
-Z76 !s108 1544011190.282000
-Z77 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd|
-Z78 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd|
+Z94 !s108 1544041238.352000
+Z95 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd|
+Z96 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_3.vhd|
 R13
 R14
 !s100 ^VM<[HMnZeP=0iQkE`<XE3
@@ -425,7 +550,7 @@ Artl
 R2
 R3
 R16
-R67
+R73
 R4
 R5
 DEx4 work 5 mux_3 0 22 NA_IWTgOn=MT0>d7<2TSR0
@@ -434,32 +559,32 @@ L16
 VmO7Tg1be?oD<h`[VW=VbB2
 R9
 31
-R76
-R77
-R78
+R94
+R95
+R96
 R13
 R14
 !s100 dH=bL6`[B9UP2l47LRzR?2
 !i10b 1
 Emux_4
-Z79 w1390927605
+Z97 w1390927605
 R2
 R3
 R16
-R67
+R73
 R4
 R5
 R6
-Z80 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd
-Z81 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd
+Z98 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd
+Z99 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd
 l0
 L6
 VU^TFaTngo2GPVVYQJhzT12
 R9
 31
-Z82 !s108 1544011189.883000
-Z83 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd|
-Z84 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd|
+Z100 !s108 1544041237.784000
+Z101 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd|
+Z102 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux_4.vhd|
 R13
 R14
 !s100 2KjE@fFJfU;hkjFm4_@^02
@@ -468,7 +593,7 @@ Artl
 R2
 R3
 R16
-R67
+R73
 R4
 R5
 DEx4 work 5 mux_4 0 22 U^TFaTngo2GPVVYQJhzT12
@@ -477,28 +602,28 @@ L16
 VS002UVOF6>F=DLE=l;@Y72
 R9
 31
-R82
-R83
-R84
+R100
+R101
+R102
 R13
 R14
 !s100 8SPiA@VYl8lQOMS1W[Oka1
 !i10b 1
 Ereg
-Z85 w1364603271
+Z103 w1364603271
 R4
 R5
 R6
-Z86 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd
-Z87 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd
+Z104 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd
+Z105 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd
 l0
 L7
 V=M[ABcRJOEGR;Bk2YdQ=C3
 R9
 31
-Z88 !s108 1544011188.072000
-Z89 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd|
-Z90 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd|
+Z106 !s108 1544041236.714000
+Z107 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd|
+Z108 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/reg.vhd|
 R13
 R14
 !s100 VzGUjc>85]Tl_V^;DRB]42
@@ -512,28 +637,28 @@ L21
 VGI8ZZ_bzE>hF;BINzY?G>1
 R9
 31
-R88
-R89
-R90
+R106
+R107
+R108
 R13
 R14
 !s100 m3b>>X::ZgKUNcA2PKKXY1
 !i10b 1
 Eregbuf
-Z91 w1375058237
+Z109 w1375058237
 R4
 R5
 R6
-Z92 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd
-Z93 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd
+Z110 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd
+Z111 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd
 l0
 L7
 V<YlF2G;hj=P5B33heZJQR3
 R9
 31
-Z94 !s108 1544011187.435000
-Z95 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd|
-Z96 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd|
+Z112 !s108 1544041236.358000
+Z113 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd|
+Z114 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd|
 R13
 R14
 !s100 4C6SegQn=jTK3[3EB`?oA1
@@ -547,30 +672,30 @@ L19
 V><K:O9C;i7<RGfcUOdDdW1
 R9
 31
-R94
-R95
-R96
+R112
+R113
+R114
 R13
 R14
 !s100 dU0zZFiXlE=gIaOd@PWTE1
 !i10b 1
 Eulamips
-Z97 w1447767356
+Z115 w1447767356
 R3
 R2
 R4
 R5
 R6
-Z98 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd
-Z99 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd
+Z116 8C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd
+Z117 FC:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd
 l0
 L6
 VzoaDkdk7>JLIQh>98S8oV1
 R9
 31
-Z100 !s108 1544011189.182000
-Z101 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd|
-Z102 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd|
+Z118 !s108 1544041237.457000
+Z119 !s90 -reportprogress|300|-93|-work|work|C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd|
+Z120 !s107 C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/ulamips.vhd|
 R13
 R14
 !s100 Mg@[lNXnTbYd=b>5XT0[[1
@@ -586,9 +711,9 @@ L19
 V2Nojj4<BOTm<XA<gKI^]Q0
 R9
 31
-R100
-R101
-R102
+R118
+R119
+R120
 R13
 R14
 !s100 5iLkPz<][NVYgo=]YQezc0

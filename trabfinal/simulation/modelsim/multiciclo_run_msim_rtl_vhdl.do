@@ -19,6 +19,9 @@ vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn
 vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/breg.vhd}
 vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/alu_ctr.vhd}
 vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extbits.vhd}
+vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux8_4.vhd}
+vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux16_2.vhd}
+vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn8.vhd}
 
 vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd}
 

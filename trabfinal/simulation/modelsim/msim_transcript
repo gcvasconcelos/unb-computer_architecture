@@ -143,6 +143,37 @@
 # -- Loading package mips_pkg
 # -- Compiling entity extbits
 # -- Compiling architecture wires of extbits
+# vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux8_4.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_SIGNED
+# -- Loading package NUMERIC_STD
+# -- Loading package mips_pkg
+# -- Compiling entity mux8_4
+# -- Compiling architecture rtl of mux8_4
+# vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mux16_2.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_SIGNED
+# -- Loading package NUMERIC_STD
+# -- Loading package mips_pkg
+# -- Compiling entity mux16_2
+# -- Compiling architecture rtl of mux16_2
+# vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/extsgn8.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package mips_pkg
+# -- Compiling entity extsgn8
+# -- Compiling architecture wires of extsgn8
 # 
 # vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/mips_multi_tb.vhd}
 # Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -180,6 +211,9 @@
 # Loading work.ulamips(behavioral)
 # Loading work.mux_3(rtl)
 # Loading work.mips_control(control_op)
+# Loading work.mux8_4(rtl)
+# Loading work.extsgn8(wires)
+# Loading work.mux16_2(rtl)
 # 
 # add wave *
 # view structure
@@ -188,21 +222,25 @@
 # .main_pane.objects.interior.cs.body.tree
 # run -all
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_pc
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_mdr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_mdr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_pc
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_pc
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
-# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
-# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
@@ -210,9 +248,17 @@
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -221,6 +267,16 @@
 #    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 6  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 6  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 6  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 3 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -462,9 +518,11 @@
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 19 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
-# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -474,9 +532,9 @@
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -489,24 +547,33 @@
 #    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+do {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/simulation/modelsim/wave.do}
 restart
 run
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_pc
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_mdr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_mdr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_pc
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_pc
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
-# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
-# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/mux_ulaB
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
@@ -514,9 +581,17 @@ run
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 0 ps  Iteration: 0  Instance: /mips_multi_tb/i1/bcoreg
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -525,6 +600,16 @@ run
 #    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 2 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 6  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 6  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 ps  Iteration: 6  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 3 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -766,9 +851,11 @@ run
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 19 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
-# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mux_byte
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -778,9 +865,9 @@ run
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
-#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
-#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+#    Time: 20 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
 #    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
@@ -793,4 +880,9 @@ run
 #    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 21 ps  Iteration: 2  Instance: /mips_multi_tb/i1/mem/altsyncram_component
+run
 run

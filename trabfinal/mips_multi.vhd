@@ -38,6 +38,7 @@ signal
 			rULA_out_v,		-- registrador na saida da ula
 			memadd_v,		-- endereco da memoria
 			datadd_v,		-- endereco de dado na memoria
+			pc_add_v,
 			regAin_v,		-- saida A do BREG
 			regBin_v,		-- saida B do BREG
 			regA_v,			-- saida A do BREG
@@ -58,8 +59,17 @@ signal sel_aluB_v 		: std_logic_vector(1 downto 0);	-- seleciona entrada B da ul
 signal alu_op_v			: std_logic_vector(2 downto 0);	-- codigo op ula
 signal org_pc_v			: std_logic_vector(1 downto 0);	-- selecao entrada do PC
 
-signal shamt_ext_v		: std_logic_vector(WORD_SIZE-1 downto 0);
-signal reg_shamt_sel_v 	: std_logic_vector(WORD_SIZE-1 downto 0);
+signal   shamt_ext_v		: std_logic_vector(WORD_SIZE-1 downto 0);
+signal   reg_shamt_sel_v 	: std_logic_vector(WORD_SIZE-1 downto 0);
+
+signal 	byte_out_v 	   : std_logic_vector(7 downto 0);
+signal 	half_out_v   	: std_logic_vector(15 downto 0);
+
+signal 	byte_ext_v 	   : std_logic_vector(31 downto 0);
+signal 	half_ext_v   	: std_logic_vector(31 downto 0);
+
+signal 	mdr_mux_sel_v 	: std_logic_vector(1 downto 0);
+signal 	mdr_in_v 	   : std_logic_vector(31 downto 0);
 
 signal 	
 			branch_s,		-- beq ou bne
@@ -77,8 +87,9 @@ signal
 			reg_wr_s,		-- escreve breg
 			sel_end_mem_s,	-- seleciona endereco memoria
 			zero_s,			-- sinal zero da ula
-			shamt_sel_s,		-- controle do mux do primeiro mux da ula A
-			logic_ext_s		-- extensão lógica com 0s ------<
+			shamt_sel_s,	-- controle do mux do primeiro mux da ula A
+			logic_ext_s,	-- extensão lógica com 0s ------<
+			is_unsigned_s  -- verifica se load é unsigned ou não
 			: std_logic;
 			
 
@@ -90,6 +101,15 @@ alias    imm16_field_v	: std_logic_vector(15 downto 0) is instruction_v(15 downt
 alias 	imm26_field_v  : std_logic_vector(25 downto 0) is instruction_v(25 downto 0);
 alias 	sht_field_v		: std_logic_vector(4 downto 0)  is instruction_v(10 downto 6);
 alias    op_field_v		: std_logic_vector(5 downto 0)  is instruction_v(31 downto 26);
+
+alias 	byte0_mem_v 	: std_logic_vector(7 downto 0)  is memout_v(7 downto 0);
+alias 	byte1_mem_v 	: std_logic_vector(7 downto 0)  is memout_v(15 downto 8);
+alias 	byte2_mem_v 	: std_logic_vector(7 downto 0)  is memout_v(23 downto 16);
+alias 	byte3_mem_v 	: std_logic_vector(7 downto 0)  is memout_v(31 downto 24);
+
+alias 	half0_mem_v 	: std_logic_vector(15 downto 0)  is memout_v(15 downto 0);
+alias 	half1_mem_v 	: std_logic_vector(15 downto 0)  is memout_v(31 downto 16);
+
 	
 begin
 
@@ -104,8 +124,9 @@ pc_wr_s 		<= jump_s or (zero_s and is_beq_s) or ((not zero_s) and is_bne_s);
 
 imm32_x4_v 	<= imm32_v(29 downto 0) & "00";
 
-datadd_v		<= X"000000" & '1' & alu_out_v(8 downto 2);
+datadd_v		<= X"000000" & '1' & rULA_out_v(8 downto 2);
 
+pc_add_v		<= X"000000" & pcout_v(9 downto 2);
 
 --=======================================================================
 -- PC - Contador de programa
@@ -119,7 +140,7 @@ pc:	reg
 --=======================================================================		
 mux_mem: mux_2
 		port map (
-			in0 	=> pcout_v,
+			in0 	=> pc_add_v,
 			in1 	=> datadd_v,
 			sel 	=> sel_end_mem_s,
 			m_out => memadd_v
@@ -129,7 +150,7 @@ mux_mem: mux_2
 -- Memoria do MIPS
 --=======================================================================		
 mem:  mips_mem
-		port map (address => memadd_v(9 downto 2), data => regB_v, wren => mem_wr_s, clk => clk_rom, Q => memout_v );
+		port map (address => memadd_v(7 downto 0), data => regB_v, wren => mem_wr_s, clk => clk_rom, Q => memout_v );
 	
 --=======================================================================
 -- RI - registrador de instruções
@@ -143,7 +164,7 @@ ir:	reg
 --=======================================================================
 rdm:	regbuf 
 		generic map (SIZE => 32)
-		port map (sr_in => memout_v, clk => clk, sr_out => rdmout_v);
+		port map (sr_in => mdr_in_v, clk => clk, sr_out => rdmout_v);
 	
 --=======================================================================
 -- Mux para enderecamento do registrador a ser escrito
@@ -309,7 +330,66 @@ ctr_mips: mips_control
 			s_aluBin => sel_aluB_v,
 			wr_breg	=> reg_wr_s,
 			s_reg_add => reg_dst_s,
-			logic_ext => logic_ext_s
+			logic_ext => logic_ext_s,
+			is_unsigned_s => is_unsigned_s,
+			mdr_mux_sel_v => mdr_mux_sel_v
 		);
-				
+--=======================================================================
+-- Mux para seleção de byte
+--=======================================================================
+mux_byte: mux8_4
+	port map(
+		in0 => byte0_mem_v, 
+		in1 => byte1_mem_v,  
+		in2 => byte2_mem_v,  
+		in3 => byte3_mem_v, 
+		sel => rULA_out_v(1 downto 0),
+		m_out => byte_out_v
+	);
+	
+--=======================================================================
+-- Mux para seleção de byte
+--=======================================================================
+sgnext8: extsgn8
+	port map(
+		input => byte_out_v,
+		logic_ext => is_unsigned_s,
+		output => byte_ext_v
+	);
+	
+--=======================================================================
+-- Mux para seleção de halfword
+--=======================================================================
+
+mux_half: mux16_2
+	port map(
+		in0		=> half0_mem_v,
+		in1	   => half1_mem_v,
+		sel		=> rULA_out_v(1),
+		m_out		=> half_out_v
+	);
+
+--=======================================================================
+-- Mux para seleção de byte
+--=======================================================================
+sgnext16: extsgn
+	port map(
+		input => half_out_v,
+		logic_ext => is_unsigned_s,
+		output => half_ext_v
+	);
+	
+--=======================================================================
+-- Mux para seleção de qual operação de load usar
+--=======================================================================
+mux_mdr: mux_3
+	port map(
+		in0		=> memout_v,
+		in1	   => half_ext_v,
+		in2		=> byte_ext_v,
+		sel		=> mdr_mux_sel_v,
+		m_out		=> mdr_in_v
+	);
+	
 end architecture;
+

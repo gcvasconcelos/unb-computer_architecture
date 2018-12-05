@@ -18,7 +18,13 @@ package mips_pkg is
 	-- Instrucoes do MIPs - OPCODES
 	constant iRTYPE		: std_logic_vector(5 downto 0) := "000000";
 	constant iLW			: std_logic_vector(5 downto 0) := "100011";
+	constant iLH			: std_logic_vector(5 downto 0) := "100001";
+	constant iLHU			: std_logic_vector(5 downto 0) := "100101";
+	constant iLB			: std_logic_vector(5 downto 0) := "100000";
+	constant iLBU			: std_logic_vector(5 downto 0) := "100100";
 	constant iSW			: std_logic_vector(5 downto 0) := "101011";
+	constant iSH			: std_logic_vector(5 downto 0) := "101001";
+	constant iSB			: std_logic_vector(5 downto 0) := "101000";
 	constant iADDI			: std_logic_vector(5 downto 0) := "001000";
 	constant iANDI			: std_logic_vector(5 downto 0) := "001100";
 	constant iORI			: std_logic_vector(5 downto 0) := "001101";
@@ -108,6 +114,17 @@ package mips_pkg is
 	);
 	end component;
 	
+	component mux16_2 is
+	generic (
+		SIZE : natural := 16
+	);
+	port (	
+		in0, in1	: in std_logic_vector(SIZE-1 downto 0);
+		sel		: in std_logic;
+		m_out		: out std_logic_vector(SIZE-1 downto 0)
+	);
+	end component;
+	
 	component mux_3 is
 	generic (
 		W_SIZE 	: natural := 32
@@ -121,6 +138,16 @@ package mips_pkg is
 	component mux_4 is
 	generic (
 		W_SIZE 	: natural := 32
+			);
+	port (
+	 	in0, in1, in2, in3	: in std_logic_vector(W_SIZE-1 downto 0);
+		sel						: in std_logic_vector(1 downto 0);
+		m_out						: out std_logic_vector(W_SIZE-1 downto 0));
+	end component;
+	
+	component mux8_4 is
+	generic (
+		W_SIZE 	: natural := 8
 			);
 	port (
 	 	in0, in1, in2, in3	: in std_logic_vector(W_SIZE-1 downto 0);
@@ -208,7 +235,9 @@ package mips_pkg is
 		s_aluBin : OUT std_logic_vector (1 DOWNTO 0); 
 		wr_breg	: OUT std_logic;
 		logic_ext: OUT std_logic;
-		s_reg_add: OUT std_logic
+		s_reg_add: OUT std_logic;
+		is_unsigned_s: OUT std_logic;
+		mdr_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0)
 	);
 	END component;
 	
@@ -230,6 +259,18 @@ end component;
 component extsgn is
 	generic (
 		IN_SIZE : natural := 16;
+		OUT_SIZE : natural := 32	
+		);
+	port (
+		input : in std_logic_vector(IN_SIZE-1 downto 0);
+		logic_ext : in std_logic;
+		output: out std_logic_vector(OUT_SIZE-1 downto 0)
+		);
+end component;
+
+component extsgn8 is
+	generic (
+		IN_SIZE : natural := 8;
 		OUT_SIZE : natural := 32	
 		);
 	port (
