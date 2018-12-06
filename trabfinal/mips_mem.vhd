@@ -18,6 +18,7 @@ entity mips_mem is
 		clk		: IN STD_LOGIC;
 		data		: IN STD_LOGIC_VECTOR (WIDTH-1 DOWNTO 0);
 		wren		: IN STD_LOGIC ;
+		byteena	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 		q			: OUT STD_LOGIC_VECTOR (WIDTH-1 DOWNTO 0));
 end entity;
 
@@ -31,6 +32,7 @@ architecture rtl of mips_mem is
 --end component;
 
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL data_sel	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 
 	COMPONENT altsyncram
 	GENERIC (
@@ -64,6 +66,8 @@ architecture rtl of mips_mem is
 	begin
 
 	q <= sub_wire0;
+	
+	data_sel <= byteena and data;
 	
 	altsyncram_component : altsyncram
 	GENERIC MAP (

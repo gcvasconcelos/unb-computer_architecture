@@ -155,6 +155,26 @@ package mips_pkg is
 		m_out						: out std_logic_vector(W_SIZE-1 downto 0));
 	end component;
 	
+	component demux4 is
+	generic (
+		W_SIZE 	: natural := 32
+			);
+	port (
+	 	in0 : in std_logic_vector(W_SIZE-1 downto 0);
+		sel: in std_logic_vector(1 downto 0);
+		out0, out1, out2, out3: out std_logic_vector(7 downto 0));
+	end component;
+	
+	component demux2 is
+	generic (
+		W_SIZE 	: natural := 32
+			);
+	port (
+	 	in0 : in std_logic_vector(W_SIZE-1 downto 0);
+		sel: in std_logic;
+		out0, out1: out std_logic_vector(15 downto 0));
+	end component;
+	
 	component adder is
 	generic (
 		DATA_WIDTH : natural := WORD_SIZE
@@ -237,7 +257,8 @@ package mips_pkg is
 		logic_ext: OUT std_logic;
 		s_reg_add: OUT std_logic;
 		is_unsigned_s: OUT std_logic;
-		mdr_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0)
+		mdr_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0);
+		wdata_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0)
 	);
 	END component;
 	
@@ -291,16 +312,16 @@ component extbits is
 		);
 end component;
 
-component mips_mem is
-	generic (
-		WIDTH : natural := 32;
-		WADDR : natural := IMEM_ADDR);
-	port (
-		address	: IN STD_LOGIC_VECTOR (WADDR-1 DOWNTO 0);
-		clk		: IN STD_LOGIC;
-		data		: IN STD_LOGIC_VECTOR (WIDTH-1 DOWNTO 0);
+component mem is
+	PORT
+	(
+		address		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+		byteena		: IN STD_LOGIC_VECTOR (3 DOWNTO 0) :=  (OTHERS => '1');
+		clk		: IN STD_LOGIC  := '1';
+		data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		wren		: IN STD_LOGIC ;
-		q			: OUT STD_LOGIC_VECTOR (WIDTH-1 DOWNTO 0));
+		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	);
 end component;
 
 component data_mem is
@@ -311,6 +332,14 @@ component data_mem is
 		data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		wren		: IN STD_LOGIC ;
 		q			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	);
+end component;
+
+component byte_mem_sel is
+	port(
+		store_ctl :  in std_logic_vector(1 downto 0); -- sw, sh or sb
+		byte_add  :  in std_logic_vector(1 downto 0); -- a1 e a0
+		byteena	 :  out std_logic_vector(3 downto 0)
 	);
 end component;
 	

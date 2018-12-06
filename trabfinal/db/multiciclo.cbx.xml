@@ -3,6 +3,6 @@
 	<PROJECT NAME="multiciclo">
 		<CBX_INST_ENTRY INSTANCE_NAME="|multiciclo|breg:bcoreg|altsyncram:breg32_rtl_0" CBX_FILE_NAME="altsyncram_dbi1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|multiciclo|breg:bcoreg|altsyncram:breg32_rtl_1" CBX_FILE_NAME="altsyncram_dbi1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|multiciclo|mips_mem:mem|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_16d1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|multiciclo|mem:memory|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_f7f1.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

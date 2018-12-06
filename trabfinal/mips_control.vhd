@@ -23,7 +23,8 @@ ENTITY mips_control IS
 		logic_ext: OUT std_logic; 
 		s_reg_add: OUT std_logic;
 		is_unsigned_s: OUT std_logic;
-		mdr_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0)
+		mdr_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0);
+		wdata_mux_sel_v: OUT std_logic_vector (1 DOWNTO 0)
 	);
 	
 END ENTITY;
@@ -44,7 +45,9 @@ ARCHITECTURE control_op OF mips_control IS
 								ori_ex_st,
 								arith_imm_st,
 								ldreghalf_st,
-								ldregbyte_st);  -- escreve resultado op arit. imediato
+								ldregbyte_st,
+								streghalf_st,
+								stregbyte_st);  -- escreve resultado op arit. imediato
 
 	signal pstate, nstate : ctr_state;
 
@@ -76,6 +79,7 @@ logic: process (opcode, pstate)
 		s_reg_add 	<= '0';
 		logic_ext 	<= '0';
 		mdr_mux_sel_v <= "00";
+		wdata_mux_sel_v <= "00";
 		is_unsigned_s <= '0';
 		case pstate is 
 			when fetch_st 		=> wr_pc 	<= '1';
@@ -106,6 +110,14 @@ logic: process (opcode, pstate)
 								
 			when writemem_st 	=> wr_mem 	 <= '1';
 										s_mem_add <= '1';
+								
+			when streghalf_st => wr_mem 	 <= '1';
+										s_mem_add <= '1';
+										wdata_mux_sel_v <= "01";
+										
+			when stregbyte_st => wr_mem 	 <= '1';
+										s_mem_add <= '1';
+										wdata_mux_sel_v <= "10";
 									
 			when rtype_ex_st	=> op_alu <= "010";
 										s_aluAin <= '1';
@@ -146,7 +158,7 @@ new_state: process (opcode, pstate)
 			when fetch_st => 	nstate <= decode_st;
 			when decode_st =>	case opcode is
 									when iRTYPE => nstate <= rtype_ex_st;
-									when iLW | iSW | iADDI | iLH | iLHU | iLB | iLBU => nstate <= c_mem_add_st;
+									when iLW | iSW | iSH | iSB | iADDI | iLH | iLHU | iLB | iLBU => nstate <= c_mem_add_st;
 									when iANDI => nstate <= andi_ex_st;
 									when iORI => nstate <= ori_ex_st;
 									when iBEQ | iBNE => nstate <= branch_ex_st;
@@ -159,6 +171,8 @@ new_state: process (opcode, pstate)
 									when iADDI => nstate <= arith_imm_st;
 									when iLH | iLHU => nstate <= ldreghalf_st;
 									when iLB | iLBU => nstate <= ldregbyte_st;
+									when iSH => nstate <= streghalf_st;
+									when iSB => nstate <= stregbyte_st;
 									when others => null;
 								   end case;
 			when readmem_st 	=> case opcode is
@@ -176,5 +190,3 @@ new_state: process (opcode, pstate)
 		end process;
 		
 end control_op;
-				
-	

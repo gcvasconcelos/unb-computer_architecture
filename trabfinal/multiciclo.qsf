@@ -42,6 +42,26 @@ set_global_assignment -name TOP_LEVEL_ENTITY multiciclo
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:56:43  DECEMBER 03, 2018"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH mips_multi_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME mips_multi_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME i1 -section_id mips_multi_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME mips_multi_tb -section_id mips_multi_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE mips_multi_tb.vhd -section_id mips_multi_tb
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name VHDL_FILE demux4.vhd
+set_global_assignment -name VHDL_FILE demux2.vhd
 set_global_assignment -name VHDL_FILE ulamips.vhd
 set_global_assignment -name VHDL_FILE regbuf.vhd
 set_global_assignment -name VHDL_FILE reg32.vhd
@@ -63,26 +83,11 @@ set_global_assignment -name VHDL_FILE clk_div.vhd
 set_global_assignment -name VHDL_FILE breg.vhd
 set_global_assignment -name VHDL_FILE alu_ctr.vhd
 set_global_assignment -name VHDL_FILE adder.vhd
-set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
-set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
-set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH mips_multi_tb -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_NAME mips_multi_tb -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME i1 -section_id mips_multi_tb
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME mips_multi_tb -section_id mips_multi_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE mips_multi_tb.vhd -section_id mips_multi_tb
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name MIF_FILE mips_rom.mif
 set_global_assignment -name VHDL_FILE extbits.vhd
 set_global_assignment -name VHDL_FILE mux8_4.vhd
 set_global_assignment -name VHDL_FILE mux16_2.vhd
 set_global_assignment -name VHDL_FILE extsgn8.vhd
+set_global_assignment -name VHDL_FILE byte_mem_sel.vhd
+set_global_assignment -name QIP_FILE mem.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

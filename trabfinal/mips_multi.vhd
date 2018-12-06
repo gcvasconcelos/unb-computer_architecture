@@ -34,6 +34,8 @@ signal
 			pcjump_v,  		-- Endereco de Jump
 			regdata_v,		-- entrada de dados BREG
 			memout_v,		-- saida da memoria
+			memin_b_v,			-- entrada da memoria byte
+			memin_h_v,			-- entrada da memoria half
 			rdmout_v,		-- saida do registrador de dados da memoria
 			rULA_out_v,		-- registrador na saida da ula
 			memadd_v,		-- endereco da memoria
@@ -71,6 +73,10 @@ signal 	half_ext_v   	: std_logic_vector(31 downto 0);
 signal 	mdr_mux_sel_v 	: std_logic_vector(1 downto 0);
 signal 	mdr_in_v 	   : std_logic_vector(31 downto 0);
 
+signal 	wdata_mux_sel_v: std_logic_vector(1 downto 0);
+signal 	write_data 	   : std_logic_vector(31 downto 0);
+signal 	byte_mask		: std_logic_vector(3 downto 0);
+
 signal 	
 			branch_s,		-- beq ou bne
 			is_beq_s,    	-- beq
@@ -90,6 +96,7 @@ signal
 			shamt_sel_s,	-- controle do mux do primeiro mux da ula A
 			logic_ext_s,	-- extensão lógica com 0s ------<
 			is_unsigned_s  -- verifica se load é unsigned ou não
+			
 			: std_logic;
 			
 
@@ -109,6 +116,14 @@ alias 	byte3_mem_v 	: std_logic_vector(7 downto 0)  is memout_v(31 downto 24);
 
 alias 	half0_mem_v 	: std_logic_vector(15 downto 0)  is memout_v(15 downto 0);
 alias 	half1_mem_v 	: std_logic_vector(15 downto 0)  is memout_v(31 downto 16);
+
+alias 	s_byte0_mem_v 	: std_logic_vector(7 downto 0)  is memin_b_v(7 downto 0);
+alias 	s_byte1_mem_v 	: std_logic_vector(7 downto 0)  is memin_b_v(15 downto 8);
+alias 	s_byte2_mem_v 	: std_logic_vector(7 downto 0)  is memin_b_v(23 downto 16);
+alias 	s_byte3_mem_v 	: std_logic_vector(7 downto 0)  is memin_b_v(31 downto 24);
+
+alias 	s_half0_mem_v 	: std_logic_vector(15 downto 0)  is memin_h_v(15 downto 0);
+alias 	s_half1_mem_v 	: std_logic_vector(15 downto 0)  is memin_h_v(31 downto 16);
 
 	
 begin
@@ -149,8 +164,16 @@ mux_mem: mux_2
 --=======================================================================
 -- Memoria do MIPS
 --=======================================================================		
-mem:  mips_mem
-		port map (address => memadd_v(7 downto 0), data => regB_v, wren => mem_wr_s, clk => clk_rom, Q => memout_v );
+
+mem_sel: byte_mem_sel
+		port map (
+			store_ctl => wdata_mux_sel_v,
+			byte_add => rULA_out_v(1 downto 0),
+			byteena => byte_mask
+		);
+
+memory:  mem
+		port map (address => memadd_v(7 downto 0), data => write_data, wren => mem_wr_s, clk => clk_rom, byteena => byte_mask,  Q => memout_v );
 	
 --=======================================================================
 -- RI - registrador de instruções
@@ -296,6 +319,42 @@ alu:	ulamips
 regULA:	regbuf 
 		generic map (SIZE => 32)
 		port map (sr_in => alu_out_v, clk => clk, sr_out => rULA_out_v);		
+
+--=======================================================================
+-- Demux 4 para seleção de sb
+--=======================================================================		
+demux_sb: demux4	
+	port map (
+		in0 	=> regB_v, 
+		sel 	=> rULA_out_v(1 downto 0),	
+		out0	=> s_byte0_mem_v, 
+		out1	=> s_byte1_mem_v, 
+		out2	=> s_byte2_mem_v, 
+		out3	=> s_byte3_mem_v
+		);
+
+--=======================================================================
+-- Demux 2 para seleção de sh
+--=======================================================================	
+demux_sh: demux2	
+	port map (
+		in0	=> regB_v, 
+		sel 	=> rULA_out_v(1),	
+		out0	=> s_half0_mem_v, 
+		out1	=> s_half1_mem_v
+		);
+
+--=======================================================================
+-- Mux 3 para seleção de fonte para escrita em memória
+--=======================================================================	
+mux_store: mux_3
+	port map (
+		in0   => regB_v,
+		in1 	=> memin_h_v,
+		in2 	=> memin_b_v,
+		sel 	=> wdata_mux_sel_v,
+		m_out => write_data
+		);
 		
 --=======================================================================
 -- Mux para selecao da entrada do PC
@@ -332,7 +391,8 @@ ctr_mips: mips_control
 			s_reg_add => reg_dst_s,
 			logic_ext => logic_ext_s,
 			is_unsigned_s => is_unsigned_s,
-			mdr_mux_sel_v => mdr_mux_sel_v
+			mdr_mux_sel_v => mdr_mux_sel_v,
+			wdata_mux_sel_v => wdata_mux_sel_v
 		);
 --=======================================================================
 -- Mux para seleção de byte
