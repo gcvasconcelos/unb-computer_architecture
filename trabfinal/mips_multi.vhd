@@ -12,7 +12,18 @@ entity multiciclo is
 		clk_rom	: in std_logic;
 		rst	   : in std_logic;
 		debug		: in std_logic_vector(1 downto 0);
-		data  	: out std_logic_vector(WORD_SIZE-1 downto 0)
+		data  	: out std_logic_vector(WORD_SIZE-1 downto 0);
+		
+		Saida_Primeiro_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		Saida_Segundo_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		Saida_Terceiro_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		Saida_Quarto_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		Saida_Quinto_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		Saida_Sexto_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		Saida_Setimo_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		Saida_Oitavo_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+		
+		led_clk	: out std_logic
 	);
 end entity;
 
@@ -25,6 +36,7 @@ architecture rtl of multiciclo is
 --
 --=======================================================================
 
+signal 	fpga_out  	: std_logic_vector(WORD_SIZE-1 downto 0);
 
 signal 	pcin_v 		: std_logic_vector(WORD_SIZE-1 downto 0) := (others => '0');		-- entrada PC
 signal 
@@ -128,7 +140,10 @@ alias 	s_half1_mem_v 	: std_logic_vector(15 downto 0)  is memin_h_v(31 downto 16
 	
 begin
 
-data 			<=  pcout_v when debug = "00" else
+led_clk 		<= clk;
+
+data 			<=  fpga_out;
+fpga_out		<=  pcout_v when debug = "00" else
 					 alu_out_v when debug = "01" else
 					 instruction_v when debug = "10" else
 					 memout_v;
@@ -142,6 +157,14 @@ imm32_x4_v 	<= imm32_v(29 downto 0) & "00";
 datadd_v		<= X"000000" & '1' & rULA_out_v(8 downto 2);
 
 pc_add_v		<= X"000000" & pcout_v(9 downto 2);
+
+ -- MUX DE SAIDA
+MUX_para_SAIDA : MIPS_Mux4x1_ESCOLHER_SAIDA_7SEG 
+		port map ( 
+			fpga_out,
+			Saida_Primeiro_7seg, Saida_Segundo_7seg, Saida_Terceiro_7seg, Saida_Quarto_7seg, Saida_Quinto_7seg, 
+			Saida_Sexto_7seg, Saida_Setimo_7seg, Saida_Oitavo_7seg	
+		);
 
 --=======================================================================
 -- PC - Contador de programa

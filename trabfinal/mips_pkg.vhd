@@ -342,6 +342,21 @@ component byte_mem_sel is
 		byteena	 :  out std_logic_vector(3 downto 0)
 	);
 end component;
+
+component MIPS_Mux4x1_ESCOLHER_SAIDA_7SEG is
+    port ( 			  
+	  data  	: in std_logic_vector(31 downto 0);
+	  Saida_Primeiro_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+	  Saida_Segundo_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+	  Saida_Terceiro_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+	  Saida_Quarto_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+	  Saida_Quinto_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+	  Saida_Sexta_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+	  Saida_Setimo_7seg : out STD_LOGIC_VECTOR(7 downto 0);
+	  Saida_Oitavo_7seg : out STD_LOGIC_VECTOR(7 downto 0)
+	);
+			  
+end component;
 	
 --	procedure mux2x1 (signal x0, x1	: in std_logic_vector(WORD_SIZE-1 downto 0); 
 --							signal sel	: in std_logic;

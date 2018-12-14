@@ -5,6 +5,9 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
+vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/converter_bin_para_7seg.vhdl}
+vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/Oito_Saidas7seg.vhd}
+vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/MIPS_Mux4x1_ESCOLHER_SAIDA_7SEG.vhd}
 vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/demux4.vhd}
 vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/demux2.vhd}
 vcom -93 -work work {C:/Users/Gabriel Vasconcelos/Documents/OAC/trabfinal/regbuf.vhd}

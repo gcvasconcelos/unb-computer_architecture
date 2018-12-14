@@ -71,24 +71,24 @@ END PROCESS init;
 
 clkgen : PROCESS                                                                               
 BEGIN                                                 
-			for i in 0 to 500 loop
+			--for i in 0 to 500 loop
 			clk_rom <= '1';
 			wait for 1 ps;
 			clk_rom <= '0';
 			wait for 1 ps;
-			end loop;			
-wait;			
+			--end loop;			
+		
 END PROCESS clkgen; 
                                        
 always : PROCESS                                                                               
 BEGIN                                                 
-			for i in 0 to 50 loop
+			--for i in 0 to 50 loop
 			clk <= '1';
 			wait for 10 ps;
 			clk <= '0';
 			wait for 10 ps;
-			end loop;				
-wait;			
+			--end loop;				
+
 END PROCESS always;   
                                        
 END mips_multi_arch;
